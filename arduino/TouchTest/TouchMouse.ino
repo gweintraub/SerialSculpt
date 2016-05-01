@@ -1,20 +1,3 @@
-#include <Adafruit_STMPE610.h>
-
-/*************************************************** 
-  This is an example for the Adafruit STMPE610 Resistive
-  touch screen controller breakout
-  ----> http://www.adafruit.com/products/1571
- 
-  Check out the links above for our tutorials and wiring diagrams
-  These breakouts use SPI or I2C to communicate
-
-  Adafruit invests time and resources providing this open source code,
-  please support Adafruit and open-source hardware by purchasing
-  products from Adafruit!
-
-  Written by Limor Fried/Ladyada for Adafruit Industries.
-  MIT license, all text above must be included in any redistribution
- ****************************************************/
 
 #include <SPI.h>
 #include <Wire.h>
@@ -45,12 +28,12 @@ Adafruit_STMPE610 touch = Adafruit_STMPE610();
 
 void setup() { 
   Serial.begin(9600);
-  //Serial.println("Adafruit STMPE610 example");
+  Serial.println("Adafruit STMPE610 example");
   Serial.flush();
 
   // if using hardware SPI on an Uno #10 must be an output, remove line
   // if using software SPI or I2C
-//  pinMode(10, OUTPUT);
+  pinMode(10, OUTPUT);
 
   // If using I2C you can select the I2C address (there are two options) by calling
   // touch.begin(0x41), the default, or touch.begin(0x44) if A0 is tied to 3.3V
@@ -59,7 +42,7 @@ void setup() {
     Serial.println("STMPE not found!");
     while(1);
   }
-  //Serial.println("Waiting for touch sense");
+  Serial.println("Waiting for touch sense");
 }
 
 void loop() {
@@ -68,13 +51,13 @@ void loop() {
   if (touch.touched()) {
     // read x & y & z;
     while (! touch.bufferEmpty()) {
-      //Serial.print(touch.bufferSize());
+      Serial.print(touch.bufferSize());
       touch.readData(&x, &y, &z);
-      //Serial.print("->("); 
-      Serial.print(x); Serial.print(","); 
-      Serial.print(y);
-      //Serial.print(z);
-      Serial.println("");
+      Serial.print("->("); 
+      Serial.print(x); Serial.print(", "); 
+      Serial.print(y); Serial.print(", "); 
+      Serial.print(z);
+      Serial.println(")");
     }
     touch.writeRegister8(STMPE_INT_STA, 0xFF); // reset all ints
   }

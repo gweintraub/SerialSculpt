@@ -1,5 +1,5 @@
 define(function (require, exports, module) {
-
+ 
   'use strict';
 
   var yagui = require('lib/yagui');

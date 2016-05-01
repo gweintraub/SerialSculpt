@@ -19,7 +19,7 @@ var dummyData = 0;
 
 
 app.get('/data', function(req, res) {
-  res.send({dummyData: dummyData});
+  res.send({dummyData});
   console.log('rawr data getted');
 });
 
@@ -101,8 +101,8 @@ function onData(data) {
   //console.log(data);
   dummyData = data;
   global.serialValue = data;
-
-  console.log("app data: " + global.serialValue);
+  //console.log(dummyData);
+  console.log(global.serialValue);
 };
 
 // //namestring.js

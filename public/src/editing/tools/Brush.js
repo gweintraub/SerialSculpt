@@ -20,13 +20,15 @@ define(function (require, exports, module) {
     this._accumulate = true; // if we ignore the proxy
     this._idAlpha = 0;
     this._lockPosition = false;
+    console.log("Brush init");
   };
 
   Brush.prototype = {
     stroke: function (picking) {
+      //console.log("Brush.js prototype stroke");
       var iVertsInRadius = picking.getPickedVertices();
       var intensity = this._intensity * Tablet.getPressureIntensity();
-
+     // console.log(iVertsInRadius);
       if (!this._accumulate && !this._lockPosition)
         this.updateProxy(iVertsInRadius);
       // undo-redo
@@ -56,6 +58,7 @@ define(function (require, exports, module) {
 
       var mesh = this.getMesh();
       mesh.updateGeometry(mesh.getFacesFromVertices(iVertsInRadius), iVertsInRadius);
+      //console.log("Brush.js var mesh = this.getMesh()");
     },
     brush: function (iVertsInRadius, aNormal, center, radiusSquared, intensity, picking) {
       var mesh = this.getMesh();

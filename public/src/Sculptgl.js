@@ -272,24 +272,47 @@ define(function (require, exports, module) {
     ////////////////
     // MOUSE EVENTS
     ////////////////
+
+    $.get('/data', function(data){
+      var dataIn = data.split(",");
+      var dataX = dataIn[0];
+      var dataY = dataIn[1];
+      this.fireEvent(dataX,dataY);
+      console.log(data);
+    });
+
+    fireEvent: function(x,y){
+      var event = {
+        clientX: x,
+        clientY: y,
+        cancelable: true,
+        bubbles: true
+      };
+
+      onMouseDown(event);
+    };
+
     onMouseDown: function (event) {
       event.stopPropagation();
       event.preventDefault();
 
       this._gui.callFunc('onMouseDown', event);
       this.onDeviceDown(event);
-      // console.log('serialValue: ' + serialValue);
-      //console.log("render data: " + window.serialValue);
-
-
-      // var coord = global2();
-      // console.log(coord);
+      //console.log(event);
     },
     onMouseMove: function (event) {
-      $.get('/data', function(data){
-        console.log('data', data)
-      })
-      console.log('mouse moving')
+
+      // $.get('/data', function(data){
+      //   fireEvent()
+      //   //console.log('data', data)
+      // })
+
+      // function fireEvent(){
+
+
+      // }
+      // console.log('mouse moving')
+      // console.log(this._mouseX + "," + this._mouseY);
       event.stopPropagation();
       event.preventDefault();
 
@@ -322,6 +345,7 @@ define(function (require, exports, module) {
     ////////////////
     // HANDLES EVENTS
     ////////////////
+    // WHERE THE ACTION HAPPENS!!!
     onDeviceUp: function () {
       this.setCanvasCursor('default');
       Multimesh.RENDER_HINT = Multimesh.NONE;
@@ -359,14 +383,18 @@ define(function (require, exports, module) {
       this.render();
     },
     setMousePosition: function (event) {
+
       this._mouseX = this._pixelRatio * (event.pageX - this._canvasOffsetLeft);
       this._mouseY = this._pixelRatio * (event.pageY - this._canvasOffsetTop);
+      //console.log("setMousePosition " + this._mouseX + ", " + this._mouseY);
     },
     onDeviceDown: function (event) {
+      console.log("onDeviceDown " + JSON.stringify(event));
       if (this._focusGui)
         return;
 
       this.setMousePosition(event);
+      //console.log("setMousePosition " + event);
 
       var mouseX = this._mouseX;
       var mouseY = this._mouseY;
@@ -436,6 +464,7 @@ define(function (require, exports, module) {
         if (action === 'SCULPT_EDIT') {
           Multimesh.RENDER_HINT = Multimesh.SCULPT;
           this._sculpt.update(this);
+          //console.log("Sculpt: " + JSON.stringify(this));
           if (this.getMesh().getDynamicTopology)
             this._gui.updateMeshInfo();
         }

@@ -37,7 +37,7 @@ define(function (require, exports, module) {
 
   var none = TR('alphaNone');
   Picking.ALPHAS_NAMES = {};
-  Picking.ALPHAS_NAMES[none] = none;
+  Picking.ALPHAS_NAMES[none] = none; 
 
   Picking.ALPHAS = {};
   Picking.ALPHAS[Picking.ALPHAS_NAMES] = null;

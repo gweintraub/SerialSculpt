@@ -34,6 +34,7 @@ define(function (require, exports, module) {
     start: function (ctrl) {
       var main = this._main;
       var picking = main.getPicking();
+      console.log(ctrl);
 
       if (!picking.intersectionMouseMeshes())
         return false;
@@ -149,6 +150,7 @@ define(function (require, exports, module) {
       this._main.render();
     },
     makeStroke: function (mouseX, mouseY, picking, pickingSym) {
+      console.log("makeStroke: " + mouseX + "," + mouseY + "," + picking + "," + pickingSym);
       var mesh = this.getMesh();
       picking.intersectionMouseMesh(mesh, mouseX, mouseY);
       var pick1 = picking.getMesh();

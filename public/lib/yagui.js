@@ -1176,6 +1176,7 @@ define('containers/Sidebar',['require','exports','module','containers/Folder'],f
     _onMouseMove: function (ev) {
       if (this.isDragging === false) return;
       var mouseX = ev.clientX;
+      console.log(mouseX);
       var delta = mouseX - this.mouseX;
       if (this.isOnTheRight) delta = -delta;
       var widthBar = Math.max(50, this.domSidebar.offsetWidth + delta);

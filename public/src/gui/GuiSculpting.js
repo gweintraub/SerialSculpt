@@ -268,6 +268,7 @@ define(function (require, exports, module) {
       if (this._modalBrushRadius && wid._ctrlRadius) {
         var dx = event.pageX - this._refX;
         var dy = event.pageY - this._refY;
+        //console.log(dx + "," + dy);
         wid._ctrlRadius.setValue(Math.sqrt(dx * dx + dy * dy));
         this._main.renderSelectOverRtt();
       }

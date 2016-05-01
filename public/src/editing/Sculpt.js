@@ -60,6 +60,9 @@ define(function (require, exports, module) {
     start: function (ctrl) {
       var tool = this.getCurrentTool();
       var canEdit = tool.start(ctrl);
+      console.log(tool.start(ctrl));
+      //console.log("Start: " + this._tool + " " + canEdit);
+      //console.log(this._main.mouseX);
       if (this._main.getPicking().getMesh() && this.isUsingContinuous())
         this._sculptTimer = window.setInterval(tool._cbContinuous, 16.6);
       return canEdit;
