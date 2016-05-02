@@ -273,24 +273,24 @@ define(function (require, exports, module) {
     // MOUSE EVENTS
     ////////////////
 
-    $.get('/data', function(data){
-      var dataIn = data.split(",");
-      var dataX = dataIn[0];
-      var dataY = dataIn[1];
-      this.fireEvent(dataX,dataY);
-      console.log(data);
-    });
+    // $.get('/data', function(data){
+    //   var dataIn = data.split(",");
+    //   var dataX = dataIn[0];
+    //   var dataY = dataIn[1];
+    //   this.fireEvent(dataX,dataY);
+    //   console.log(data);
+    // });
 
-    fireEvent: function(x,y){
-      var event = {
-        clientX: x,
-        clientY: y,
-        cancelable: true,
-        bubbles: true
-      };
+    // fireEvent: function(x,y){
+    //   var event = {
+    //     clientX: x,
+    //     clientY: y,
+    //     cancelable: true,
+    //     bubbles: true
+    //   };
 
-      onMouseDown(event);
-    };
+    //   onMouseDown(event);
+    // };
 
     onMouseDown: function (event) {
       event.stopPropagation();

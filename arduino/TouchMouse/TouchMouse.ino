@@ -91,10 +91,12 @@ void loop() {
      // Serial.print(_x); Serial.print(","); Serial.println(_y);
 //      Serial.println(String(x) + "," + String(y));
      Serial.println("");
+     delay(10);
     }
     touch.writeRegister8(STMPE_INT_STA, 0xFF); // reset all ints
-    delay(10);
+    //delay(10);
   }
   delay(10);
+  //Serial.println("_,_");
 }
 

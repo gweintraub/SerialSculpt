@@ -85,25 +85,27 @@ app.use(function(err, req, res, next) {
   });
 });
 
-var serialport = require('serialport');
-SerialPort = serialport.SerialPort;
-portName = process.argv[2];
+// var serialport = require('serialport');
+// SerialPort = serialport.SerialPort;
+// portName = process.argv[2];
 
-var myPort = new SerialPort(portName, {
-  baudRate: 9600,
-  parser: serialport.parsers.readline("\r\n")
-})
+// var myPort = new SerialPort(portName, {
+//   baudRate: 9600,
+//   parser: serialport.parsers.readline("\r\n")
+// })
 
-//myPort.on('open', onOpen);
-myPort.on('data', onData);
+// //myPort.on('open', onOpen);
+// myPort.on('data', onData);
 
-function onData(data) {
-  //console.log(data);
-  dummyData = data;
-  global.serialValue = data;
-  //console.log(dummyData);
-  console.log(global.serialValue);
-};
+// function onData(data) {
+//   //console.log(data);
+//   dummyData = data;
+//   global.serialValue = data;
+//   //console.log(dummyData);
+//   console.log(global.serialValue);
+// };
+
+///////////////////////////
 
 // //namestring.js
 // var nameString = “foobar”;
