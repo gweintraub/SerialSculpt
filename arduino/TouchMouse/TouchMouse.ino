@@ -70,7 +70,7 @@ void loop() {
   if (touch.touched()) {
     // read x & y & z;
     while (! touch.bufferEmpty()) {
-      //Serial.print(touch.bufferSize());
+     // Serial.println(touch.bufferSize());
       touch.readData(&x, &y, &z);
       //Serial.print("->("); 
 //      xx = int(x);
@@ -95,6 +95,8 @@ void loop() {
     }
     touch.writeRegister8(STMPE_INT_STA, 0xFF); // reset all ints
     //delay(10);
+  } else {
+    Serial.print("false"); Serial.print('\n');
   }
   delay(10);
   //Serial.println("_,_");

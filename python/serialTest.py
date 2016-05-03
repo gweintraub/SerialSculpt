@@ -18,25 +18,45 @@ print(pyautogui.PAUSE)
 pyautogui.PAUSE = 0
 print(pyautogui.PAUSE)
 mouseDown = False
-
+x = 0
+y = 0
+hold = "false"
+# lastX = 0
+# lastY = 0
 
 while True:
-	data = ser.readline()
-	x, y = map(int, data.split(","))
+	data = ser.readline().replace('\n', '')
+	if data == "false":
 
-	curX += lastX - x
-	curY += lastY - y
+		mouseDown = False
+		print "False"
+		pyautogui.mouseUp()
+	else:
+		x, y = map(int, data.split(","))
+		if pyautogui.onScreen(x,y):
+			if mouseDown == False:
+				mouseDown = True
+				print "True"
+				pyautogui.mouseDown()
+				pyautogui.moveTo(x,y)
+				print(str(x) + "," + str(y))
+			else:
+				pyautogui.moveTo(x,y)
+				print(str(x) + "," + str(y))
+
+	# curX += lastX - x
+	# curY += lastY - y
 
 	# if x != lastX and y != lastY and pyautogui.onScreen(x, y):
 	# if curX and curY and pyautogui.onScreen(curX, curY):
 	# 	pyautogui.moveTo(curX,curY, duration=.00001)
 		
 
-	if x != lastX and y != lastY and pyautogui.onScreen(x, y):
-		# pyautogui.mouseDown()
-		pyautogui.moveTo(x,y)
-		print(str(x) + "," + str(y))
-		# pyautogui.mouseUp()
+	# if x != lastX and y != lastY and pyautogui.onScreen(x, y):
+	# 	# pyautogui.mouseDown()
+	# 	pyautogui.moveTo(x,y)
+	# 	print(str(x) + "," + str(y))
+	# 	# pyautogui.mouseUp()
 
 
 
